@@ -6,7 +6,8 @@ class Timer extends Component {
 		super(props);
 
 		this.state = {
-            seconds : 0
+            seconds : 0,
+            color: "#000"
         }
         
         this.countUp = this.countUp.bind(this);
@@ -23,15 +24,22 @@ class Timer extends Component {
 
     countUp() {
         let s = this.state.seconds + 1;
-        
+        if(s > 5){this.setState({color: "#ff0000"})}
         this.setState({seconds : s})
       }
+
+    targetStyle(){
+        return {
+            color: this.state.color,
+            fontWeight: 'bold'
+        }
+    }
 
 
     render(){
         return(
             <View>
-                <Text>
+                <Text style={this.targetStyle()}>
                     {this.state.seconds}
                 </Text>
             </View> 
