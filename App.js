@@ -34,9 +34,9 @@ export default function App() {
       <Text>Hello World</Text>
       <Timer />
       <Timer type="ms"/>
-      <PreciseTimer />
-      <PreciseTimer type="tar" seconds={5}/>
-      <PreciseTimer type="cd" seconds={5}/>
+      <PreciseTimer cd={false}/>
+      <PreciseTimer type="tar" cd={false} sec={5}/>
+      <PreciseTimer type="cd" cd={true} sec={5}/>
 
       <Clock />
       <StatusBar style="auto" />
