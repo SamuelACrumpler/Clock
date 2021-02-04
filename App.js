@@ -4,6 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import Timer from "./src/component/timer"
 import PreciseTimer from "./src/component/preciseTimer"
 import Clock from "./src/component/clock"
+import { Header, Button } from 'react-native-elements';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import { Audio } from 'expo-av';
 
 export default function App() {
@@ -29,9 +32,15 @@ export default function App() {
   }, [sound]);
 
   return (
+    <SafeAreaProvider>
     <View style={styles.container}>
-     
+      <Header
+        leftComponent={{ text: "Timer App", style:{color: '#fff' }}}
+      />
       <Text>Hello World</Text>
+      <Button
+  title="Solid Button"
+/>
       <Timer />
       <Timer type="ms"/>
       <PreciseTimer cd={false}/>
@@ -41,6 +50,7 @@ export default function App() {
       <Clock />
       <StatusBar style="auto" />
     </View>
+    </SafeAreaProvider>
   );
 }
 
