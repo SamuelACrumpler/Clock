@@ -83,7 +83,7 @@ const timerStyle = () => {
         
     }, [base])
 
-  
+    //Might need to re-write this, due to the timer updating slower and slower
 
     React.useEffect(() => {
         let timer;
@@ -124,7 +124,7 @@ const timerStyle = () => {
                 //playSound()
             }
         }
-    }, [countInterval])
+    }, [countInterval]) //Try calling this when button is pressed instead. It can do the call back and get the updated state to turn off the alarm.
 
 
     
