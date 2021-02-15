@@ -27,7 +27,6 @@ const getData = async () => {
 const refresh = () =>{getData()}
 
 React.useEffect(() => {
-    setData("Hey this worked")
     getData()
     let tData = {}
     tData.id = 0; //pull the last value in the array.
@@ -41,8 +40,6 @@ React.useEffect(() => {
 }, [])
 
 React.useEffect(() => {
-    console.log("timers were set----------------------")
-    console.log(timers)
 }, [timers])
 
 

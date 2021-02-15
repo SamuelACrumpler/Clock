@@ -64,9 +64,7 @@ export default function CRUD({navigation}) {
 
     const storeData = async (value) => {
         let tdata = []
-        console.log('-----------')
-        console.log(timers)
-        if(timers !== null || timers !== undefined || timers !== "null"){
+        if(timers !== null ){ 
             tdata = timers
         }
         tdata.push(value)
@@ -86,7 +84,6 @@ export default function CRUD({navigation}) {
     }
 
     const saveData = () => {
-        console.log("name: " + name)
         if(name === "" || name === null || name === undefined){
             setError("Fill out name input before proceeding.")
             return;
@@ -98,15 +95,12 @@ export default function CRUD({navigation}) {
         
         //insert logic for completely new timer here.
         let tData = {}
-        tData.id = 0; //pull the last value in the array.
         tData.hour = hourI;
         tData.min = minI;
         tData.sec = secI;
         tData.name = name;
         tData.cd = selectedIndex === 1 ? false : true
-        tData.time = 0;//milliseconds on the timer, needs to get pulled when editing.
         storeData(tData)
-        //navigation.navigate('Home')
     }
     
 
@@ -125,16 +119,7 @@ export default function CRUD({navigation}) {
 
     }, [sec])
 
-    // React.useEffect(() => {
-    //     //console.log("test")
-    // }, [hour])
-
-    // React.useEffect(() => {
-    //     console.log(Date.now()+5000)
-    //     console.log("----------------")
-    //     console.log(timers)
-
-    // }, [timers])
+    
 
     React.useEffect(() => {
         getData()
@@ -166,7 +151,6 @@ export default function CRUD({navigation}) {
         />
             
             <View style={{
-                flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'stretch',
@@ -188,7 +172,7 @@ export default function CRUD({navigation}) {
             </View>
             
             <View style={{
-                flex: 1,
+                
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'stretch',
@@ -198,65 +182,65 @@ export default function CRUD({navigation}) {
                 <Picker
                     selectedValue={hourI}
                     style={{height: 50, width: '33%'}}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setHourI(itemValue)
+                    onValueChange={(itemValue, itemIndex) =>{
+                        setHourI(itemValue)}
                     }>
 
                     {
                         hour.map((num) => {
-                            return <Picker.Item key={"picker"+num} label={num} value={num}  />
+                            return <Picker.Item key={num} label={""+num} value={num} />
                         })
                     }
-                    
+
+                   
                 </Picker>
                 <Picker
                     selectedValue={minI}
                     style={{height: 50, width: '34%'}}
-                    onValueChange={(itemValue, itemIndex) =>
+                    onValueChange={(itemValue) =>
                         setMinI(itemValue)
                     }>
                         
                     {
                         minsec.map((num) => {
-                            return <Picker.Item key={"picker"+num} label={num} value={num}  />
+                            return <Picker.Item key={num} label={""+num} value={num} />
                         })
                     }
-                    
+
                 </Picker>
                 <Picker
                     selectedValue={secI}
                     style={{height: 50, width: '33%'}}
-                    onValueChange={(itemValue, itemIndex) =>
+                    onValueChange={(itemValue) =>
                         setSecI(itemValue)
                     }>
-                        
+
                     {
                         minsec.map((num) => {
-                            return <Picker.Item key={"picker"+num} label={num} value={num}  />
+                            return <Picker.Item key={num} label={""+num} value={num} />
                         })
                     }
-                    
+                        
                 </Picker>
             </View>
 
             <View style={{
-                flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'stretch',
                 paddingLeft: "0.5%",
                 paddingRight: "0.5%"
             }}>
-                <View style={{width: '33%', height: 50, backgroundColor: 'powderblue'}} >
+                <View style={{width: '33%', height: 50}} >
                     <Button title="Save" 
                         onPress={() => saveData()}
                     />  
                                         
                 </View>
-                <View style={{width: '34%', height: 50, backgroundColor: 'skyblue'}}>
+                <View style={{width: '34%', height: 50}}>
                     
                 </View>
-                <View style={{width: '33%', height: 50, backgroundColor: 'steelblue'}}>
+                <View style={{width: '33%', height: 50}}>
                     <Button title="Cancel" 
                         onPress={() => navigation.navigate('Home')}
                     />  

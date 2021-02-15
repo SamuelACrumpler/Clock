@@ -117,16 +117,10 @@ const deleteData = async () =>{
         
         
     }, [])
-    React.useEffect(() => {
-        console.log('--------------')
-        console.log(timers)
-        
-        
-    }, [timers])
+  
 
 
     React.useEffect(() => {
-        console.log(started)
         if(started === true){
           setBase(Date.now())
           findTarget()
@@ -178,8 +172,6 @@ const deleteData = async () =>{
             setColor("#ff0000")
 
                 setAlarm(true)
-                console.log("ALARM!")
-                //android toast will go here
                playSound()
             }
         }
@@ -192,18 +184,17 @@ const deleteData = async () =>{
     return (
         <View >
                 <View style={{
-                    flex: 1,
                     flexDirection: 'row',
                     justifyContent: 'center',
                     alignItems: 'stretch',
                     paddingLeft: "0.5%",
                     paddingRight: "0.5%"
                 }}>
-                <View style={{width: '90%', borderWidth: 1, height: 42, justifyContent: 'center', alignItems: 'center', backgroundColor: 'powderblue'}} >
+                <View style={{width: '80%', borderWidth: 1, height: 42, justifyContent: 'center', alignItems: 'center', backgroundColor: 'powderblue'}} >
                     <Text style={timerStyle()}>{props.name} | {seconds}</Text>
                         
                 </View>
-                <View style={{width: '5%', height: 42, backgroundColor: 'black'}}>
+                <View style={{width: '10%', height: 42, backgroundColor: 'black'}}>
                     <Button buttonStyle={{borderRadius: 0, borderWidth:1, borderColor: 'black', height: 42, backgroundColor: '#d9534f'}} 
                     icon={
                         <Icon
@@ -219,7 +210,7 @@ const deleteData = async () =>{
                     />  
 
                 </View>
-                <View style={{width: '5%', height: 42, backgroundColor: 'steelblue'}}>
+                <View style={{width: '10%', height: 42, backgroundColor: 'steelblue'}}>
                     <Button buttonStyle={{borderRadius: 0, borderWidth:1, borderColor: 'black', height: 42, backgroundColor: '#0275d8'}} 
                     icon={
                         <Icon

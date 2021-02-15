@@ -18,7 +18,6 @@ const Home = ({navigation}) => {
     const getData = async () => {
         try {
             const jsonValue = await AsyncStorage.getItem('@timers')
-            console.log("test2222" +jsonValue)
             if(jsonValue === null){
                 setTimers([]);
             }else{
@@ -39,8 +38,6 @@ const Home = ({navigation}) => {
     }, [])
 
     React.useEffect(() => { 
-        console.log('------fkfkfkfkfkfff')
-        console.log(timers)
         if(timers === null){setTimers([])}
     }, [timers])
 
