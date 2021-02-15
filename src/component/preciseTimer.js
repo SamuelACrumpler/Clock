@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { Text, View, ToastAndroid, Platform} from "react-native";
+import { Header, Button, Input, ButtonGroup} from 'react-native-elements';
+import { Icon } from 'react-native-elements'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 import { Audio } from 'expo-av';
 
 
@@ -26,16 +31,17 @@ const PreciseTimer = (props) => {
 const [seconds,setSeconds] = useState(0);
 const [dest, setDest] = useState(0)
 const [target, setTarget] = useState(0)
-const [base, setBase] = useState(Date.now())
+const [base, setBase] = useState(0)
 const [color, setColor] = useState("#000")
 const [cdBool, setCDBool] = useState(false)
+const [timers, setTimers] = useState([])
 const [tarBool, setTarBool] = useState(false)
 const [sound, setSound] = React.useState();
 const [alarm, setAlarm] = useState(false);
 
 
 const [countInterval, setCountInterval] = useState(0);
-const [started, setStarted] = useState(true);
+const [started, setStarted] = useState(false);
 
 
 
@@ -69,31 +75,80 @@ const findTarget = () => {
 
 
 const timerStyle = () => {
-    return {color : color}
+    return {color : color, fontWeight: "bold", fontSize: 20, textAlign: 'center', justifyContent: 'center'}
+}
+
+const getData = async () => {
+    try {
+        const jsonValue = await AsyncStorage.getItem('@timers')
+        setTimers(JSON.parse(jsonValue))
+    } catch(e) {
+    // error reading value
+    console.log("Error while loading data: " + e)
+
+    }
+}
+
+const storeData = async (value) => {
+    if(timers !== null || timers !== undefined){
+        value = timers
+    }
+    const jsonValue = JSON.stringify(value)
+    try {
+      await AsyncStorage.setItem('@timers', jsonValue)
+      props.refresh()
+    } catch (e) {
+      // saving error
+      console.log("Error while saving data: " + e)
+    }
+}
+
+const deleteData = async () =>{
+    let tTimers = timers;
+    tTimers.splice(props.index, 1); //should delete via the index.
+    storeData(tTimers)
 }
 
 
 // --- call back functions
 
     React.useEffect(() => {
-
-        setStarted(true)
-        findTarget()
-        setCDBool(props.cd)
+        getData();
         
-    }, [base])
+        
+    }, [])
+    React.useEffect(() => {
+        console.log('--------------')
+        console.log(timers)
+        
+        
+    }, [timers])
 
-    //Might need to re-write this, due to the timer updating slower and slower
+
+    React.useEffect(() => {
+        console.log(started)
+        if(started === true){
+          setBase(Date.now())
+          findTarget()
+          setCDBool(props.cd)
+
+        }
+        
+        
+    }, [started])
+
 
     React.useEffect(() => {
         let timer;
-        if (started) {
+        if (started === true && base > 0) {
+            setCDBool(props.cd)
             timer = setInterval(() => {
+
             if(cdBool === false) //will be a count up timer
-                setCountInterval(Date.now() - base);  //Might not need to set count interval, instead just set seconds here
+                setCountInterval(Date.now() - base);  
             else
-                // setCountInterval((base + target) - Date.now());
                 setCountInterval(base + target - Date.now());
+                if(Date.now >= base+target){clearInterval(timer)}
             
 
           }, 1000);
@@ -101,7 +156,7 @@ const timerStyle = () => {
           clearInterval(timer);
         }
         return () => clearInterval(timer)
-    }, [cdBool, countInterval])
+    }, [base], [countInterval])//count interval was here.
     
     React.useEffect(() => {
         if(countInterval >= 0)
@@ -110,21 +165,25 @@ const timerStyle = () => {
             setSeconds("-"+displayHMS(countInterval*-1))
             
 
-        if(countInterval > target && target > 0){
+        if(countInterval > target && target > 0){//logic for when the countup hits the target
             setColor("#ff0000")
-            //add alarm sound here too
+            setAlarm(true)
+            playSound()
 
-            //logic for when the countup hits the target
+
+
+            
         }else if(countInterval < 0){
             if(alarm === false){
             setColor("#ff0000")
 
                 setAlarm(true)
+                console.log("ALARM!")
                 //android toast will go here
-                //playSound()
+               playSound()
             }
         }
-    }, [countInterval]) //Try calling this when button is pressed instead. It can do the call back and get the updated state to turn off the alarm.
+    }, [countInterval]) 
 
 
     
@@ -132,9 +191,52 @@ const timerStyle = () => {
 // --- render
     return (
         <View >
-            <Text style={timerStyle()}>
-                {seconds}
-            </Text>
+                <View style={{
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'stretch',
+                    paddingLeft: "0.5%",
+                    paddingRight: "0.5%"
+                }}>
+                <View style={{width: '90%', borderWidth: 1, height: 42, justifyContent: 'center', alignItems: 'center', backgroundColor: 'powderblue'}} >
+                    <Text style={timerStyle()}>{props.name} | {seconds}</Text>
+                        
+                </View>
+                <View style={{width: '5%', height: 42, backgroundColor: 'black'}}>
+                    <Button buttonStyle={{borderRadius: 0, borderWidth:1, borderColor: 'black', height: 42, backgroundColor: '#d9534f'}} 
+                    icon={
+                        <Icon
+                        name='close'
+                        type='evilicon'
+                        size={23}
+                        color="white"
+                      />
+                    } 
+
+                    onPress={() => deleteData()}
+                 
+                    />  
+
+                </View>
+                <View style={{width: '5%', height: 42, backgroundColor: 'steelblue'}}>
+                    <Button buttonStyle={{borderRadius: 0, borderWidth:1, borderColor: 'black', height: 42, backgroundColor: '#0275d8'}} 
+                    icon={
+                        <Icon
+                        name='play'
+                        type='evilicon'
+                        size={23}
+                        color="white"
+                      />
+                    }    
+
+                    onPress={() => setStarted(true)}
+
+                    />  
+
+                </View>
+            </View>
+            
         </View> 
     )
 

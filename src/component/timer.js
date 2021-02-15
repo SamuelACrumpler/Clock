@@ -14,7 +14,6 @@ class Timer extends Component {
     }
 
     componentDidMount(){
-        console.log("mounted")
         if(this.props.type === "ms")
             this.timer = setInterval(this.countUp, 1)
         else{
