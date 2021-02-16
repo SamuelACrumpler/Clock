@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0a6307a1-8751-46f1-9457-367c8a7d14fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/component/preciseTimer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/preciseTimer.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1nqfTu0XN7zOIdMHBwct1Cige7w" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0a6307a1-8751-46f1-9457-367c8a7d14fd" name="Default Changelist" comment="" />
+      <created>1612122552831</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612122552831</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="100" y="100" width="2360" height="1200" key="AVDManager" timestamp="1612921872331">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="100" y="100" width="2360" height="1200" key="AVDManager/0.0.2560.1400/-1857.1064.1217.720/3840.0.2560.1400@0.0.2560.1400" timestamp="1612921872331" />
+    <state x="100" y="100" width="2360" height="1200" key="AVDManager/3840.0.2560.1400/0.0.2560.1400/-1857.1064.1217.720@0.0.2560.1400" timestamp="1612226624629" />
   </component>
 </project>
