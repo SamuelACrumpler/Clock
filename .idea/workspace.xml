@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a6307a1-8751-46f1-9457-367c8a7d14fd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/component/preciseTimer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/preciseTimer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/crud.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/crud.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +40,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="100" y="100" width="2360" height="1200" key="AVDManager" timestamp="1612921872331">
+    <state x="100" y="100" width="2360" height="1200" key="AVDManager" timestamp="1613521882411">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="100" y="100" width="2360" height="1200" key="AVDManager/0.0.2560.1400/-1857.1064.1217.720/3840.0.2560.1400@0.0.2560.1400" timestamp="1612921872331" />
+    <state x="100" y="100" width="2360" height="1200" key="AVDManager/0.0.2560.1400/-1857.1064.1217.720/3840.0.2560.1400@0.0.2560.1400" timestamp="1613521882411" />
     <state x="100" y="100" width="2360" height="1200" key="AVDManager/3840.0.2560.1400/0.0.2560.1400/-1857.1064.1217.720@0.0.2560.1400" timestamp="1612226624629" />
   </component>
 </project>
