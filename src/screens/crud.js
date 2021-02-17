@@ -6,6 +6,8 @@ import { Header, Button, Input, ButtonGroup} from 'react-native-elements';
 import {Picker} from '@react-native-picker/picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { interpolate } from "react-native-reanimated";
+import styMain from "../styles/styMain"
+
 
 export default function CRUD({navigation}) {
     const [selectedIndex,setSelected] = useState(1);
@@ -79,9 +81,7 @@ export default function CRUD({navigation}) {
         }
     }
 
-    const loadData = () => {
-
-    }
+    
 
     const saveData = () => {
         if(name === "" || name === null || name === undefined){
@@ -124,7 +124,6 @@ export default function CRUD({navigation}) {
     React.useEffect(() => {
         getData()
         let tData = {}
-        tData.id = 0; //pull the last value in the array.
         tData.hour = 0;
         tData.min = 0;
         tData.sec = 0;
@@ -137,8 +136,8 @@ export default function CRUD({navigation}) {
     
 
     return (
-    <SafeAreaProvider>
-        <View>
+    <SafeAreaProvider style={{ alignItems: 'center'}}>
+        <View style={styMain()}>
         <Input
             placeholder='Name'
             onChangeText={value => setName(value)}
@@ -146,8 +145,9 @@ export default function CRUD({navigation}) {
         <ButtonGroup
             onPress={() => updateIndex()}
             selectedIndex={selectedIndex}
+            buttonStyle={{backgroundColor:"whitesmoke"}}
             buttons={buttons}
-            containerStyle={{height: 100}}
+            containerStyle={{height: 50}}
         />
             
             <View style={{

@@ -13,13 +13,14 @@ const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="CRUD" component={Crud} />
-        <Stack.Screen name="Test" component={Test} />
-        
-      </Stack.Navigator>
-    </NavigationContainer>
+    
+      <NavigationContainer style={{backgroundColor:"blue"}}>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Add Timer" component={Crud} />
+          <Stack.Screen name="Test" component={Test} />
+          
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 };

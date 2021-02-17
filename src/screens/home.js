@@ -1,19 +1,19 @@
 import React, {useState} from 'react';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import PreciseTimer from "../component/preciseTimer"
 import { Header, Button } from 'react-native-elements';
 import { useFocusEffect } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import styMain from "../styles/styMain"
 
 
 
 const Home = ({navigation}) => {
     const [timers, setTimers] = useState([])
-    const [focused, setFocused] = useState(false)
+    const image = { uri: "../assets/bg.png" };
 
     const getData = async () => {
         try {
@@ -50,29 +50,30 @@ const Home = ({navigation}) => {
         }, [])
       );
 
-    //May need to save data when transitioning???
     return (
-    <SafeAreaProvider>
-        <View>
+    <SafeAreaProvider style={{ alignItems: 'center'}}>
+        <View style={styMain()}>
+
+        
             {
                 timers.map((timer, index) => {
                     return <PreciseTimer key={index} index={index} name={timer.name} cd={timer.cd} hour={timer.hour} min={timer.min} sec={timer.sec} refresh={refresh} />
                 })
             }
-        <View
-        style={{
-            paddingLeft: "0.5%",
-            paddingRight: "0.5%"
-        }}>
-            <Button title="Add Timer" 
-            onPress={() => navigation.navigate('CRUD')}
-            />    
-            
-            
-        </View>
+            <View
+            style={{
+                paddingLeft: "0.5%",
+                paddingRight: "0.5%"
+            }}>
+                <Button title="Add Timer" 
+                onPress={() => navigation.navigate('Add Timer')}
+                />    
+                
+                
+            </View>
         
-
         </View>
+
     </SafeAreaProvider>
     )
 }
